@@ -6,7 +6,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix"
   },
   "jest": {
     "preset": "jest-expo"
@@ -28,8 +30,13 @@
     "react-navigation": "^3.11.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "babel-preset-expo": "^6.0.0",
-    "jest-expo": "^34.0.0"
+    "eslint": "^6.3.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-native": "^3.7.0",
+    "jest-expo": "^34.0.0",
+    "prettier": "^1.18.2"
   },
   "private": true
 }
