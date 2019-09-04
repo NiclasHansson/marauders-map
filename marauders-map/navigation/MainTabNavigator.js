@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
-import TabBarIcon from '../src/components/TabBarIcon';
+import TabBarIcon from './TabBarIcon';
 import HomeScreen from '../src/screens/HomeScreen';
 
 const config = Platform.select({

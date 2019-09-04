@@ -1,4 +1,3 @@
 export default {
-    tabIconDefault: '#ccc',
-    tabIconSelected: '#eaeaea',
+    background: '#fff',
 };

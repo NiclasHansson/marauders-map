@@ -1,28 +1,24 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
+
+import Colors from '../constants/Colors';
+import FloorPlan from '../components/floorPlan/FloorPlan';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
     },
-    content: {
+    scrollContainer: {
         flex: 1,
-        justifyContent: 'center',
-    },
-    getStartedText: {
-        fontSize: 17,
-        color: 'rgba(96,100,109, 1)',
-        lineHeight: 24,
-        textAlign: 'center',
     },
 });
 
 export default function HomeScreen() {
     return (
         <View style={styles.container}>
-            <ScrollView contentContainerStyle={styles.content}>
-                <Text style={styles.getStartedText}>Hello world 1</Text>
+            <ScrollView contentContainerStyle={styles.scrollContainer}>
+                <FloorPlan />
             </ScrollView>
         </View>
     );
