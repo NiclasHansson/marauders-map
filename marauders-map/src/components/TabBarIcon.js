@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 
-export default function TabBarIcon({ focused, name }) {
+export default function TabBarIcon({ focused = false, name }) {
     return (
         <Ionicons
             name={name}
@@ -17,5 +17,5 @@ export default function TabBarIcon({ focused, name }) {
 
 TabBarIcon.propTypes = {
     name: PropTypes.string,
-    focused: PropTypes.boolean,
+    focused: PropTypes.bool,
 };

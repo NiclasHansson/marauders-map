@@ -6,7 +6,7 @@ import * as Font from 'expo-font';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import AppNavigator from './navigation/AppNavigator';
+import HomeScreen from './src/screens/HomeScreen';
 
 const styles = StyleSheet.create({
     container: {
@@ -47,11 +47,11 @@ export default function App(props) {
     ) : (
         <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-            <AppNavigator />
+            <HomeScreen />
         </View>
     );
 }
 
 App.propTypes = {
-    skipLoadingScreen: PropTypes.func.isRequired,
+    skipLoadingScreen: PropTypes.func,
 };
