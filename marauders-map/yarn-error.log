@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.10.1/libexec/bin/yarn.js add -D prop-types
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.10.1/libexec/bin/yarn.js
 
 PATH: 
-  /Users/niclas/google-cloud-sdk/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+  /Users/niclas/google-cloud-sdk/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/niclas/Library/Android/sdk/tools:/Users/niclas/Library/Android/sdk/platform-tools
 
 Yarn version: 
   1.10.1
@@ -14,7 +14,11 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: EACCES: permission denied, unlink '/Users/niclas/Documents/workspace/marauders-map/marauders-map/node_modules/@react-native-community/cli/node_modules/ansi-regex/license'
+  Error: https://registry.yarnpkg.com/react-native-platform-touchable/-/react-native-platform-touchable-1.1.1.tgz: ETIMEDOUT
+      at Timeout._onTimeout (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:120826:19)
+      at ontimeout (timers.js:498:11)
+      at tryOnTimeout (timers.js:323:5)
+      at Timer.listOnTimeout (timers.js:290:5)
 
 npm manifest: 
   {
@@ -57,7 +61,8 @@ npm manifest:
       "eslint-plugin-react": "^7.14.3",
       "eslint-plugin-react-native": "^3.7.0",
       "jest-expo": "^34.0.0",
-      "prettier": "^1.18.2"
+      "prettier": "^1.18.2",
+      "prop-types": "^15.7.2"
     },
     "private": true
   }
