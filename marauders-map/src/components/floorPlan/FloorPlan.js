@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 32,
         fontWeight: '300',
+        fontFamily: 'kelly-slab',
         color: Colors.primary,
     },
     map: {
@@ -26,6 +27,9 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    mapText: {
+        fontFamily: 'kelly-slab',
     },
     roomPicker: {
         width: '100%',
@@ -40,6 +44,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: Colors.secondary,
         borderRadius: 5,
+        fontFamily: 'kelly-slab',
     },
     floorPicker: {
         width: '100%',
@@ -54,7 +59,7 @@ export const FloorPlan = () => {
             <View style={styles.content}>
                 <Text style={styles.header}>Torsgatan 14</Text>
                 <View style={styles.map}>
-                    <Text>Map goes here.....</Text>
+                    <Text style={styles.mapText}>Map goes here.....</Text>
                 </View>
                 <View style={styles.roomPicker}>
                     <RoomPicker />

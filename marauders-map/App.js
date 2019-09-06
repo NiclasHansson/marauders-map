@@ -21,6 +21,7 @@ const loadResourcesAsync = async () => {
         Font.loadAsync({
             // This is the font that we are using for our tab bar
             ...Ionicons.font,
+            'kelly-slab': require('./assets/fonts/KellySlab-Regular.ttf'),
         }),
     ]);
 };

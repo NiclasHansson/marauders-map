@@ -23,13 +23,14 @@ const styles = StyleSheet.create({
     },
     upperText: {
         fontSize: 10,
+        fontFamily: 'kelly-slab',
         color: Colors.text,
         marginTop: 5,
     },
     lowerText: {
         fontSize: 24,
+        fontFamily: 'kelly-slab',
         color: Colors.primary,
-        fontWeight: '800',
     },
 });
 

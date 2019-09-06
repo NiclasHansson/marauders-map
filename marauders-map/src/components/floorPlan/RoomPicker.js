@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     },
     roomName: {
         fontSize: 20,
+        fontFamily: 'kelly-slab',
         color: Colors.primary,
     },
 });
