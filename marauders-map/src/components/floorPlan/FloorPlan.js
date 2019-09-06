@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     search: {
         width: '100%',
         height: 60,
-        marginTop: 20,
+        marginTop: 30,
         paddingHorizontal: 10,
         borderWidth: 1,
         borderColor: Colors.secondary,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
     floorPicker: {
         width: '100%',
-        marginTop: 20,
+        marginTop: 30,
         alignItems: 'center',
     },
 });
@@ -54,7 +54,7 @@ export const FloorPlan = () => {
             <View style={styles.content}>
                 <Text style={styles.header}>Torsgatan 14</Text>
                 <View style={styles.map}>
-                    <Text>Map goes here...</Text>
+                    <Text>Map goes here.....</Text>
                 </View>
                 <View style={styles.roomPicker}>
                     <RoomPicker />

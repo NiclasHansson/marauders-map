@@ -1,15 +1,30 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import Colors from '../../constants/Colors';
 
+const itemHeight = 60;
 const styles = StyleSheet.create({
     picker: {
         maxHeight: 170,
         width: '90%',
+        position: 'relative',
+    },
+    fade: {
+        width: '100%',
+        height: itemHeight / 2,
+        position: 'absolute',
+        zIndex: 1,
+    },
+    fadeUpper: {
+        top: 0,
+    },
+    fadeLower: {
+        bottom: 0,
     },
     room: {
-        height: 60,
+        height: itemHeight,
         flexDirection: 'row',
         alignItems: 'center',
         borderBottomWidth: 1,
@@ -30,42 +45,32 @@ const styles = StyleSheet.create({
     },
 });
 
-const colorHexes = ['0', '2', '4', '6', '8', 'a', 'c', 'e'];
+const roomColors = ['#f9d8e4', '#42b5d7', '#bcd4e0'];
 const rooms = [
     {
         label: 'Elevator/Staircase',
         value: 0,
-        color: `#${colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]}${
-            colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]
-        }${colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]}`,
+        color: roomColors[0 % roomColors.length],
     },
     {
         label: "Alp d'Huez",
         value: 1,
-        color: `#${colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]}${
-            colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]
-        }${colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]}`,
+        color: roomColors[1 % roomColors.length],
     },
     {
         label: 'Alta',
         value: 2,
-        color: `#${colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]}${
-            colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]
-        }${colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]}`,
+        color: roomColors[2 % roomColors.length],
     },
     {
         label: 'Aspen',
         value: 3,
-        color: `#${colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]}${
-            colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]
-        }${colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]}`,
+        color: roomColors[3 % roomColors.length],
     },
     {
         label: 'Chamonix',
         value: 4,
-        color: `#${colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]}${
-            colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]
-        }${colorHexes[Math.floor(Math.random() * 10) % colorHexes.length]}`,
+        color: roomColors[4 % roomColors.length],
     },
 ];
 
@@ -73,18 +78,30 @@ export const RoomPicker = () => {
     const [selected, setSelected] = useState(0);
 
     return (
-        <ScrollView selectedValue={selected} style={styles.picker}>
-            {rooms.map(({ color, label, value }, index) => (
-                <TouchableOpacity
-                    key={`room-${value}`}
-                    style={rooms.length === index + 1 ? { ...styles.room, ...styles.lastRoom } : styles.room}
-                    onPress={() => setSelected(value)}
-                >
-                    <View style={{ ...styles.colorBall, backgroundColor: color }} />
-                    <Text style={styles.roomName}>{label}</Text>
-                </TouchableOpacity>
-            ))}
-        </ScrollView>
+        <View style={styles.picker}>
+            <LinearGradient
+                style={{ ...styles.fade, ...styles.fadeUpper }}
+                colors={['rgba(251, 250, 249, 1)', 'rgba(251, 250, 249, 0)']}
+                pointerEvents={'none'}
+            />
+            <ScrollView selectedValue={selected} showsVerticalScrollIndicator={false}>
+                {rooms.map(({ color, label, value }, index) => (
+                    <TouchableOpacity
+                        key={`room-${value}`}
+                        style={rooms.length === index + 1 ? { ...styles.room, ...styles.lastRoom } : styles.room}
+                        onPress={() => setSelected(value)}
+                    >
+                        <View style={{ ...styles.colorBall, backgroundColor: color }} />
+                        <Text style={styles.roomName}>{label}</Text>
+                    </TouchableOpacity>
+                ))}
+            </ScrollView>
+            <LinearGradient
+                style={{ ...styles.fade, ...styles.fadeLower }}
+                colors={['rgba(251, 250, 249, 0)', 'rgba(251, 250, 249, 1)']}
+                pointerEvents={'none'}
+            />
+        </View>
     );
 };
 

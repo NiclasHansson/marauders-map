@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
     },
     selected: {
         borderTopColor: Colors.primary,
-        borderTopWidth: 3,
+        borderTopWidth: 5,
     },
     upperText: {
-        fontSize: 12,
+        fontSize: 10,
         color: Colors.text,
         marginTop: 5,
     },
