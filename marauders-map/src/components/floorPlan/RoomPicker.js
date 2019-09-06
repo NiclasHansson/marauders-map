@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const roomColors = ['#f9d8e4', '#42b5d7', '#bcd4e0'];
+const roomColors = [Colors.bathroom, Colors.meeting, '#bcd4e0'];
 const rooms = [
     {
         label: 'Elevator/Staircase',

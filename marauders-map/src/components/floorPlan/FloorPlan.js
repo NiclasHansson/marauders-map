@@ -3,6 +3,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import Colors from '../../constants/Colors';
 import FloorPicker from './FloorPicker';
+import Map from './Map';
 import RoomPicker from './RoomPicker';
 
 const styles = StyleSheet.create({
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
     },
     content: {
         width: '90%',
-        marginTop: 150,
+        marginTop: 100,
         flex: 1,
         alignItems: 'center',
     },
@@ -22,11 +23,13 @@ const styles = StyleSheet.create({
         fontFamily: 'kelly-slab',
         color: Colors.primary,
     },
-    map: {
+    mapContainer: {
         flex: 1,
         width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
+    },
+    map: {
+        height: 260,
+        marginTop: 40,
     },
     mapText: {
         fontFamily: 'kelly-slab',
@@ -58,13 +61,14 @@ export const FloorPlan = () => {
         <View style={styles.container}>
             <View style={styles.content}>
                 <Text style={styles.header}>Torsgatan 14</Text>
-                <View style={styles.map}>
-                    <Text style={styles.mapText}>Map goes here.....</Text>
+                <View style={styles.mapContainer}>
+                    <View style={styles.map}>
+                        <Map />
+                    </View>
                 </View>
                 <View style={styles.roomPicker}>
                     <RoomPicker />
                 </View>
-                <TextInput style={styles.search} value="Search" />
             </View>
             <View style={styles.floorPicker}>
                 <FloorPicker />
