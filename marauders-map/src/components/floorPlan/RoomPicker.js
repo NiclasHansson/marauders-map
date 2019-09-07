@@ -47,46 +47,71 @@ const styles = StyleSheet.create({
 });
 
 const roomColors = [Colors.bathroom, Colors.meeting, '#bcd4e0'];
-const rooms = [
+global.rooms = [
+    //{
+    //    label: 'Elevator/Staircase',
+    //    value: 0,
+    //    color: roomColors[0 % roomColors.length],
+    //    size: 0,
+    //},
     {
-        label: 'Elevator/Staircase',
-        value: 0,
-        color: roomColors[0 % roomColors.length],
-    },
-    {
+        floor: 7,
         label: "Alp d'Huez",
         value: 1,
         color: roomColors[1 % roomColors.length],
+        type: 'meeting',
+        coordinates: [35, 10],
     },
     {
+        floor: 7,
         label: 'Alta',
         value: 2,
         color: roomColors[2 % roomColors.length],
+        type: 'meeting',
+        coordinates: [25, 10],
     },
     {
+        floor: 8,
         label: 'Aspen',
         value: 3,
         color: roomColors[3 % roomColors.length],
+        type: 'meeting',
+        coordinates: [15, 10],
+        data: {
+            name: 'Aspen',
+            size: 8,
+        },
     },
     {
+        floor: 8,
         label: 'Chamonix',
         value: 4,
         color: roomColors[4 % roomColors.length],
+        type: 'meeting',
+        coordinates: [45, 10],
     },
 ];
 
+//export const RoomsOnFloor = (selectedFloor) => {
+//    return result = rooms.filter(room => floor = selectedFloor);
+//}
+
+////{rooms.map(({ color, label, value }, index) => (
 export const RoomPicker = () => {
     const [selected, setSelected] = useState(0);
 
     return (
+        
         <View style={styles.picker}>
+            <Text>Hej {currentFloor}</Text>
             <LinearGradient
                 style={{ ...styles.fade, ...styles.fadeUpper }}
                 colors={['rgba(251, 250, 249, 1)', 'rgba(251, 250, 249, 0)']}
                 pointerEvents={'none'}
             />
+            
             <ScrollView selectedValue={selected} showsVerticalScrollIndicator={false}>
-                {rooms.map(({ color, label, value }, index) => (
+                {(rooms.filter(room => room.floor == currentFloor)).map(({ color, label, value }, index) => (
                     <TouchableOpacity
                         key={`room-${value}`}
                         style={rooms.length === index + 1 ? { ...styles.room, ...styles.lastRoom } : styles.room}
