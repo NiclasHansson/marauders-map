@@ -92,14 +92,12 @@ global.rooms = [
     },
 ];
 
-//export const RoomsOnFloor = (selectedFloor) => {
-//    return result = rooms.filter(room => floor = selectedFloor);
-//}
 
-////{rooms.map(({ color, label, value }, index) => (
-export const RoomPicker = () => {
+export const RoomPicker = props => {
     const [selected, setSelected] = useState(0);
-
+    console.log('RoomPicker is rendered');
+     const { currentFloor } = props.currentFloor
+    console.log('RoomPicker currentFloor here=' + currentFloor);
     return (
         
         <View style={styles.picker}>

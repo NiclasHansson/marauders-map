@@ -1,10 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import Colors from '../../constants/Colors';
 import FloorPicker from './FloorPicker';
 import Map from './Map';
 import RoomPicker from './RoomPicker';
+
+class FloorPlan extends Component {
+    state = {
+        currentFloor: 7,
+    }
+
+    handleFloorChange(floor) {
+        console.log('handleFloorChange is starting');
+        console.log('floor=' + floor);
+        const newState = Object.assign(
+            {
+                currentFloor: floor,
+            },
+        )
+        this.setState(newState);
+    } 
+    
+    render() {
+        const { currentFloor } = this.state
+        console.log('render floorplan floor=' + currentFloor);
+        return (
+            <View style={styles.container}>
+                <View style={styles.content}>
+                    <Text style={styles.header}>Torsgatan 14</Text>
+                    <View style={styles.mapContainer}>
+                        <View style={styles.map}>
+                            <Map currentFloor={{ currentFloor }} />
+                        </View>
+                    </View>
+                    <View style={styles.roomPicker}>
+                        <RoomPicker currentFloor={{ currentFloor }} />
+                    </View>
+                </View>
+                <View style={styles.floorPicker}>
+                    <FloorPicker currentFloor={{ currentFloor }}
+                        handleFloorChange={this.handleFloorChange} />
+                </View>
+            </View>
+        );
+    };
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -56,25 +97,6 @@ const styles = StyleSheet.create({
     },
 });
 
-export const FloorPlan = () => {
-    return (
-        <View style={styles.container}>
-            <View style={styles.content}>
-                <Text style={styles.header}>Torsgatan 14</Text>
-                <View style={styles.mapContainer}>
-                    <View style={styles.map}>
-                        <Map />
-                    </View>
-                </View>
-                <View style={styles.roomPicker}>
-                    <RoomPicker />
-                </View>
-            </View>
-            <View style={styles.floorPicker}>
-                <FloorPicker />
-            </View>
-        </View>
-    );
-};
+
 
 export default FloorPlan;

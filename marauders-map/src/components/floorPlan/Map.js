@@ -75,11 +75,12 @@ const getLocationStyle = type => {
     }
 };
 // {locations.map(({ type, coordinates }) => (
-export const Map = () => {
+export const Map = props => {
+    const { currentFloor } = props.currentFloor
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../../assets/images/mapxxxhdpi.png')} />
-            {(rooms.filter(room => room.floor == 8)).map(({ type, coordinates }) => (
+            {(rooms.filter(room => room.floor == currentFloor)).map(({ type, coordinates }) => (
                 <View
                     key={`loc-${coordinates}`}
                     style={{ ...getLocationStyle(type), left: `${coordinates[0]}%`, top: `${coordinates[1]}%` }}
