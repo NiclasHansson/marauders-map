@@ -47,31 +47,81 @@ const styles = StyleSheet.create({
 });
 
 const roomColors = [Colors.bathroom, Colors.meeting, '#bcd4e0'];
-const rooms = [
+global.rooms = [
     {
         label: 'Elevator/Staircase',
+        floor: 8,
         value: 0,
+        type: 'stairway',
+        coordinates: [70, 25],
         color: roomColors[0 % roomColors.length],
+        data: {},
     },
     {
         label: "Alp d'Huez",
+        floor: 8,
         value: 1,
+        type: 'meeting',
+        coordinates: [25, 10],
         color: roomColors[1 % roomColors.length],
+        data: {
+            name: "Alp d'Huez",
+            size: 2,
+        },
     },
     {
         label: 'Alta',
+        floor: 8,
         value: 2,
+        type: 'meeting',
+        coordinates: [35, 10],
         color: roomColors[2 % roomColors.length],
+        data: {
+            name: 'Alta',
+            size: 4,
+        },
     },
     {
         label: 'Aspen',
+        floor: 8,
         value: 3,
+        type: 'meeting',
+        coordinates: [15, 10],
         color: roomColors[3 % roomColors.length],
+        data: {
+            name: 'Aspen',
+            size: 8,
+        },
     },
     {
         label: 'Chamonix',
+        floor: 8,
         value: 4,
+        type: 'meeting',
+        coordinates: [45, 10],
         color: roomColors[4 % roomColors.length],
+        data: {
+            name: 'Chamonix',
+            size: 14,
+        },
+    },
+    {
+        label: 'bathroom1',
+        floor: 8,
+        value: 5,
+        type: 'bathroom',
+        coordinates: [20, 30],
+        color: roomColors[5 % roomColors.length],
+        data: {},
+    },
+    {
+        label: 'fika1',
+        floor: 8,
+        value: 6,
+        type: 'kitchen',
+        coordinates: [35, 65],
+        color: roomColors[6 % roomColors.length],
+        data: {},
     },
 ];
 

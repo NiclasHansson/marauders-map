@@ -34,32 +34,6 @@ const styles = StyleSheet.create({
     },
 });
 
-const locations = [
-    {
-        type: 'meeting',
-        coordinates: [15, 10],
-        data: {
-            name: 'Aspen',
-            size: 8,
-        },
-    },
-    {
-        type: 'bathroom',
-        coordinates: [20, 30],
-        data: {},
-    },
-    {
-        type: 'stairway',
-        coordinates: [70, 25],
-        data: {},
-    },
-    {
-        type: 'kitchen',
-        coordinates: [35, 65],
-        data: {},
-    },
-];
-
 const getLocationStyle = type => {
     switch (type) {
         case 'meeting':
@@ -79,7 +53,7 @@ export const Map = () => {
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../../assets/images/mapxxxhdpi.png')} />
-            {locations.map(({ type, coordinates }) => (
+            {rooms.map(({ type, coordinates }) => (
                 <View
                     key={`loc-${coordinates}`}
                     style={{ ...getLocationStyle(type), left: `${coordinates[0]}%`, top: `${coordinates[1]}%` }}
