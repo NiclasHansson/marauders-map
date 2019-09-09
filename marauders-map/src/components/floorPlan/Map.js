@@ -58,7 +58,7 @@ export const Map = ({ rooms, selected }) => {
                 ({ coordinates, label, type }) =>
                     (label === selected || selected === 'All') && (
                         <View
-                            key={`loc-${coordinates}`}
+                            key={`loc-${coordinates}-${label}`}
                             style={{
                                 ...getLocationStyle(type),
                                 left: `${coordinates[0]}%`,

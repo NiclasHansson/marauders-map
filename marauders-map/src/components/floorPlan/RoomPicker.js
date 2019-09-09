@@ -83,7 +83,7 @@ export const RoomPicker = ({ onSelect, rooms, selected }) => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 {rooms.map(({ label, type }, index) => (
                     <TouchableOpacity
-                        key={`room-${label}`}
+                        key={`room-${label}-${index}`}
                         style={rooms.length === index + 1 ? { ...styles.room, ...styles.lastRoom } : styles.room}
                         onPress={() => onSelect(label)}
                     >

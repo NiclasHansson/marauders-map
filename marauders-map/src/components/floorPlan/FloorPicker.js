@@ -43,7 +43,7 @@ export const FloorPicker = () => {
         <ScrollView style={styles.container} horizontal showsHorizontalScrollIndicator={false}>
             {floors.map((floor, index) => (
                 <TouchableOpacity
-                    key={`floor-${floor}`}
+                    key={`floor-${floor}-${index}`}
                     onPress={() => setSelected(index)}
                     style={index === selected ? { ...styles.button, ...styles.selected } : styles.button}
                 >
