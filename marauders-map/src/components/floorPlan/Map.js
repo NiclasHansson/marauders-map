@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Image, StyleSheet, View } from 'react-native';
+=======
+import React from 'react';
+import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
+>>>>>>> show rum details
 
 import Colors from '../../constants/Colors';
 
@@ -12,7 +18,12 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
+<<<<<<< HEAD
         resizeMode: 'contain',
+=======
+        height: '95%',
+        resizeMode: 'center',
+>>>>>>> show rum details
     },
     dot: {
         position: 'absolute',
@@ -62,7 +73,7 @@ const getLocationStyle = type => {
 
 let start = true;
 
-export const Map = ({ rooms, selected }) => {
+export const Map = ({onRoomPress, rooms, selected }) => {
     const [translateValue] = useState(new Animated.ValueXY({ x: 50, y: -60 }));
 
     if (start) {
@@ -114,7 +125,8 @@ export const Map = ({ rooms, selected }) => {
                         selected === 'All' ||
                         (selected === 'Printer' && type == 'printer') ||
                         (selected === 'Bathroom' && type == 'bathroom')) && (
-                        <View
+                            <TouchableOpacity
+                            onPress={onRoomPress}
                             key={`loc-${coordinates}-${label}`}
                             style={{
                                 ...getLocationStyle(type),
@@ -141,6 +153,7 @@ export const Map = ({ rooms, selected }) => {
 Map.propTypes = {
     rooms: PropTypes.array,
     selected: PropTypes.string,
+    onRoomPress: PropTypes.func,
 };
 
 export default Map;
