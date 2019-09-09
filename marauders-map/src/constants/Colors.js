@@ -7,4 +7,5 @@ export default {
     meeting: '#42b5d7',
     stairway: '#de1371',
     kitchen: '#007b45',
+    printer: 'violet',
 };

@@ -33,11 +33,16 @@ const styles = StyleSheet.create({
     kitchen: {
         backgroundColor: Colors.kitchen,
     },
+    printer: {
+        backgroundColor: Colors.printer,
+    },
 });
 
 const getLocationStyle = type => {
     switch (type) {
         case 'meeting':
+            return { ...styles.dot, ...styles.meeting };
+        case 'teamroom':
             return { ...styles.dot, ...styles.meeting };
         case 'bathroom':
             return { ...styles.dot, ...styles.bathroom };
@@ -45,6 +50,8 @@ const getLocationStyle = type => {
             return { ...styles.dot, ...styles.stairway };
         case 'kitchen':
             return { ...styles.dot, ...styles.kitchen };
+        case 'printer':
+            return { ...styles.dot, ...styles.printer };
         default:
             return styles.dot;
     }
@@ -56,7 +63,7 @@ export const Map = ({ rooms, selected }) => {
             <Image style={styles.image} source={require('../../../assets/images/mapxxxhdpi.png')} />
             {rooms.map(
                 ({ coordinates, label, type }) =>
-                    (label === selected || selected === 'All') && (
+                    (label === selected || selected === 'All' || (selected === 'Printer' && type == 'printer') || (selected === 'Bathroom' && type == 'bathroom') ) && (
                         <View
                             key={`loc-${coordinates}-${label}`}
                             style={{
