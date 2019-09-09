@@ -79,25 +79,21 @@ const getColor = type => {
 export const RoomPicker = ({ onSelect, rooms, selected }) => {
     let havePrinterAlready = false;
     let haveBathroomAlready = false;
-    const filteredroom = rooms.filter((room) => {
-        if (room.type === "printer") {
+    const filteredroom = rooms.filter(room => {
+        if (room.type === 'printer') {
             if (!havePrinterAlready) {
                 havePrinterAlready = true;
-                
                 return true;
             }
-        } else if (room.type === "bathroom") {
+        } else if (room.type === 'bathroom') {
             if (!haveBathroomAlready) {
                 haveBathroomAlready = true;
-                
                 return true;
             }
         } else {
             return true;
         }
-    },[])
-
-    
+    }, []);
 
     return (
         <View style={styles.picker}>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View } from 'react-native';
+import { Animated, Image, StyleSheet, View } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
@@ -60,13 +60,60 @@ const getLocationStyle = type => {
     }
 };
 
+let start = true;
+
 export const Map = ({ rooms, selected }) => {
+    const [translateValue] = useState(new Animated.ValueXY({ x: 50, y: -60 }));
+
+    if (start) {
+        Animated.loop(
+            Animated.sequence([
+                Animated.timing(translateValue, {
+                    toValue: { x: 300, y: -60 },
+                    duration: 20000,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(translateValue, {
+                    toValue: { x: 50, y: -60 },
+                    duration: 10000,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(translateValue, {
+                    toValue: { x: 180, y: 80 },
+                    duration: 15000,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(translateValue, {
+                    toValue: { x: 210, y: 80 },
+                    duration: 5000,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(translateValue, {
+                    toValue: { x: 210, y: -60 },
+                    duration: 15000,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(translateValue, {
+                    toValue: { x: 50, y: -60 },
+                    duration: 10000,
+                    useNativeDriver: true,
+                }),
+            ])
+        ).start();
+        start = false;
+    }
+
+    const translateTransform = translateValue.getTranslateTransform();
+
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../../assets/images/mapxxxhdpi.png')} />
             {rooms.map(
                 ({ coordinates, label, type }) =>
-                    (label === selected || selected === 'All' || (selected === 'Printer' && type == 'printer') || (selected === 'Bathroom' && type == 'bathroom') ) && (
+                    (label === selected ||
+                        selected === 'All' ||
+                        (selected === 'Printer' && type == 'printer') ||
+                        (selected === 'Bathroom' && type == 'bathroom')) && (
                         <View
                             key={`loc-${coordinates}-${label}`}
                             style={{
@@ -76,6 +123,16 @@ export const Map = ({ rooms, selected }) => {
                             }}
                         />
                     )
+            )}
+            {rooms && rooms.length && rooms[0].floor === 8 && (
+                <Animated.View
+                    key={`loc-asa`}
+                    style={{
+                        ...styles.dot,
+                        backgroundColor: 'red',
+                        transform: translateTransform,
+                    }}
+                />
             )}
         </View>
     );
