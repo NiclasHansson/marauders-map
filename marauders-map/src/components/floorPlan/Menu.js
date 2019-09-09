@@ -7,27 +7,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',
-        marginVertical: 0,
         width: '95%',
         height: '72%',
+        position: 'absolute',
         bottom: 0,
         //Below lines will help to set the border radius
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 20,
         borderTopRightRadius: 15,
         borderTopLeftRadius: 20,
-        position: 'absolute',
-        zIndex: 0,
     },
     containerInner: {
-        zIndex: 1,
         position: 'relative',
-        // marginTop: 0,
         opacity: 0.9,
         bottom: 0,
     },
     titleContainer: {
-        //display: 'flex',
         justifyContent: 'space-around',
         flexDirection: 'row',
         marginHorizontal: 5,
@@ -42,7 +37,12 @@ const styles = StyleSheet.create({
         bottom: 0,
         width: '100%',
     },
-
+    closeButton: {
+        width: 48,
+        height: 48,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     stretch: {
         width: 25,
         height: 25,
@@ -72,19 +72,18 @@ const styles = StyleSheet.create({
     },
     closeContainer: {
         position: 'absolute',
-        right: -30,
-        top: 4,
+        right: 0,
     },
 });
 
-export const Menu = ({ onClose }) => {
+export const Menu = ({ onClose, data }) => {
     return (
         <View style={styles.container}>
             <View style={styles.containerInner}>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.header}>Alta</Text>
+                    <Text style={styles.header}>{data.label}</Text>
                     <View style={styles.closeContainer}>
-                        <TouchableOpacity onPress={onClose}>
+                        <TouchableOpacity style={styles.closeButton} onPress={onClose}>
                             <Image style={styles.stretch} source={require('../../../assets/images/error.png')} />
                         </TouchableOpacity>
                     </View>

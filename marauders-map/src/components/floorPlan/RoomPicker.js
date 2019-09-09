@@ -76,7 +76,7 @@ const getColor = type => {
     }
 };
 
-export const RoomPicker = ({ onSelect, rooms, selected }) => {
+export const RoomPicker = ({ onSelect, onReselect, rooms, selected }) => {
     let havePrinterAlready = false;
     let haveBathroomAlready = false;
     const filteredroom = rooms.filter(room => {
@@ -107,7 +107,7 @@ export const RoomPicker = ({ onSelect, rooms, selected }) => {
                     <TouchableOpacity
                         key={`room-${label}-${index}`}
                         style={filteredroom.length === index + 1 ? { ...styles.room, ...styles.lastRoom } : styles.room}
-                        onPress={() => onSelect(label)}
+                        onPress={() => (selected === label ? onReselect() : onSelect(label))}
                     >
                         <View style={styles.nameContainer}>
                             <View style={{ ...styles.colorBall, backgroundColor: getColor(type) }} />
@@ -130,6 +130,7 @@ export const RoomPicker = ({ onSelect, rooms, selected }) => {
 
 RoomPicker.propTypes = {
     onSelect: PropTypes.func,
+    onReselect: PropTypes.func,
     rooms: PropTypes.array,
     selected: PropTypes.string,
 };

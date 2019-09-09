@@ -66,7 +66,7 @@ export const FloorPlan = () => {
     const eightFloor = Rooms.filter(room => room.floor === 8);
     const [selectedRoom, onSelectRoom] = useState(eightFloor[0].label);
     const [showMenu, setShowMenu] = useState(false);
-
+    const selectedRoomData = eightFloor.find(room => room.label === selectedRoom);
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -77,14 +77,19 @@ export const FloorPlan = () => {
                     </View>
                 </View>
                 <View style={styles.roomPicker}>
-                    <RoomPicker onSelect={onSelectRoom} rooms={eightFloor} selected={selectedRoom} />
+                    <RoomPicker
+                        onSelect={onSelectRoom}
+                        onReselect={() => setShowMenu(true)}
+                        rooms={eightFloor}
+                        selected={selectedRoom}
+                    />
                 </View>
             </View>
 
             <View style={styles.floorPicker}>
                 <FloorPicker />
             </View>
-            {showMenu && <Menu onClose={() => setShowMenu(false)} />}
+            {showMenu && <Menu data={selectedRoomData} onClose={() => setShowMenu(false)} />}
         </View>
     );
 };
