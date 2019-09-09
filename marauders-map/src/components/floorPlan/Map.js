@@ -1,6 +1,6 @@
 import React from 'react';
+import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
+        height: '95%',
         resizeMode: 'center',
     },
     dot: {
@@ -50,14 +51,15 @@ const getLocationStyle = type => {
     }
 };
 
-export const Map = ({ rooms, selected }) => {
+export const Map = ({ onRoomPress, rooms, selected }) => {
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../../assets/images/mapxxxhdpi.png')} />
             {rooms.map(
                 ({ coordinates, label, type }) =>
                     (label === selected || selected === 'All') && (
-                        <View
+                        <TouchableOpacity
+                            onPress={onRoomPress}
                             key={`loc-${coordinates}-${label}`}
                             style={{
                                 ...getLocationStyle(type),
@@ -74,6 +76,7 @@ export const Map = ({ rooms, selected }) => {
 Map.propTypes = {
     rooms: PropTypes.array,
     selected: PropTypes.string,
+    onRoomPress: PropTypes.func,
 };
 
 export default Map;
