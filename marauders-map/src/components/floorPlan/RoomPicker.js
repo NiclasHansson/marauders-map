@@ -61,6 +61,8 @@ const getColor = type => {
     switch (type) {
         case 'meeting':
             return Colors.meeting;
+        case 'teamroom':
+            return Colors.teamroom;
         case 'bathroom':
             return Colors.bathroom;
         case 'kitchen':

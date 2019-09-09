@@ -410,6 +410,20 @@
         data: {},
     },
     {
+        label: 'Bathroom',
+        floor: 8,
+        type: 'bathroom',
+        coordinates: [40, 63],
+        data: {},
+    },
+    {
+        label: 'Bathroom',
+        floor: 8,
+        type: 'bathroom',
+        coordinates: [87, 65],
+        data: {},
+    },
+    {
         label: 'Printer',
         floor: 8,
         type: 'printer',
@@ -434,7 +448,7 @@
         label: "Printer",
         floor: 8,
         type: 'printer',
-        coordinates: [85, 65],
+        coordinates: [83, 65],
         data: {},
     }
 ];

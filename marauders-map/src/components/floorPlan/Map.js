@@ -36,6 +36,9 @@ const styles = StyleSheet.create({
     printer: {
         backgroundColor: Colors.printer,
     },
+    teamroom: {
+        backgroundColor: Colors.teamroom,
+    },
 });
 
 const getLocationStyle = type => {
@@ -43,7 +46,7 @@ const getLocationStyle = type => {
         case 'meeting':
             return { ...styles.dot, ...styles.meeting };
         case 'teamroom':
-            return { ...styles.dot, ...styles.meeting };
+            return { ...styles.dot, ...styles.teamroom };
         case 'bathroom':
             return { ...styles.dot, ...styles.bathroom };
         case 'stairway':
