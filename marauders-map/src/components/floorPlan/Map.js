@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Image, StyleSheet, View } from 'react-native';
-=======
-import React from 'react';
-import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
->>>>>>> show rum details
 
 import Colors from '../../constants/Colors';
 
@@ -18,12 +12,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-<<<<<<< HEAD
         resizeMode: 'contain',
-=======
-        height: '95%',
-        resizeMode: 'center',
->>>>>>> show rum details
     },
     dot: {
         position: 'absolute',
