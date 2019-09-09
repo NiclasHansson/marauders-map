@@ -54,17 +54,19 @@ export const Map = ({ rooms, selected }) => {
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../../assets/images/mapxxxhdpi.png')} />
-            {rooms.map(({ coordinates, label, type }) => (
-                <View
-                    key={`loc-${coordinates}`}
-                    style={{
-                        ...getLocationStyle(type),
-                        left: `${coordinates[0]}%`,
-                        top: `${coordinates[1]}%`,
-                        display: label === selected ? 'flex' : 'none',
-                    }}
-                />
-            ))}
+            {rooms.map(
+                ({ coordinates, label, type }) =>
+                    (label === selected || selected === 'All') && (
+                        <View
+                            key={`loc-${coordinates}`}
+                            style={{
+                                ...getLocationStyle(type),
+                                left: `${coordinates[0]}%`,
+                                top: `${coordinates[1]}%`,
+                            }}
+                        />
+                    )
+            )}
         </View>
     );
 };
