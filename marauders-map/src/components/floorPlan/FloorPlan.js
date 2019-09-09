@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Colors from '../../constants/Colors';
 import FloorPicker from './FloorPicker';
 import Map from './Map';
@@ -66,7 +66,7 @@ export const FloorPlan = () => {
     const eightFloor = Rooms.filter(room => room.floor === 8);
     const [selectedRoom, onSelectRoom] = useState(eightFloor[0].label);
     const [showMenu, setShowMenu] = useState(false);
-    console.log('NICLAS', showMenu);
+
     return (
         <View style={styles.container}>
             <View style={styles.content}>

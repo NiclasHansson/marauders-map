@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 import Colors from '../../constants/Colors';
 
@@ -61,8 +61,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderBottomColor: 'gray',
         borderBottomWidth: 2,
-        marginBottom: 30,
-
         marginBottom: 25,
         paddingVertical: 5,
     },
@@ -78,33 +76,6 @@ const styles = StyleSheet.create({
         top: 4,
     },
 });
-
-const roomDetails = [
-    {
-        label: 'Alta',
-        people: ' 3 people',
-        value: 1,
-        image: <Image style={styles.stretch} source={require('../../../assets/images/error.png')} />,
-    },
-    {
-        label: 'Room XXX',
-        people: ' 4 Personer',
-        value: 2,
-        image: <Image style={styles.stretch} source={require('../../../assets/images/robot-dev.png')} />,
-    },
-    {
-        label: 'Room XXX',
-        people: ' 3 people',
-        value: 3,
-        image: <Image style={styles.stretch} source={require('../../../assets/images/robot-dev.png')} />,
-    },
-    {
-        label: 'Room XXX',
-        people: ' 6 people',
-        value: 4,
-        image: <Image style={styles.stretch} source={require('../../../assets/images/robot-dev.png')} />,
-    },
-];
 
 export const Menu = ({ onClose }) => {
     return (
