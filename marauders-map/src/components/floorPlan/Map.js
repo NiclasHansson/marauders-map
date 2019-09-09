@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        resizeMode: 'center',
+        resizeMode: 'contain',
     },
     dot: {
         position: 'absolute',
