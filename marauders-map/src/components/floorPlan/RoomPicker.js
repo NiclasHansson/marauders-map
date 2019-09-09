@@ -107,9 +107,9 @@ export const RoomPicker = ({ onSelect, rooms, selected }) => {
 };
 
 RoomPicker.propTypes = {
-    onSelect: PropTypes.func.required,
-    rooms: PropTypes.array.required,
-    selected: PropTypes.string.required,
+    onSelect: PropTypes.func,
+    rooms: PropTypes.array,
+    selected: PropTypes.string,
 };
 
 export default RoomPicker;

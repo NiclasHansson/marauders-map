@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Image, StyleSheet, View } from 'react-native';
 
 import Colors from '../../constants/Colors';
@@ -34,32 +35,6 @@ const styles = StyleSheet.create({
     },
 });
 
-const locations = [
-    {
-        type: 'meeting',
-        coordinates: [0, 0],
-        data: {
-            name: 'Aspen',
-            size: 8,
-        },
-    },
-    {
-        type: 'bathroom',
-        coordinates: [100, 0],
-        data: {},
-    },
-    {
-        type: 'stairway',
-        coordinates: [0, 100],
-        data: {},
-    },
-    {
-        type: 'kitchen',
-        coordinates: [100, 100],
-        data: {},
-    },
-];
-
 const getLocationStyle = type => {
     switch (type) {
         case 'meeting':
@@ -75,18 +50,28 @@ const getLocationStyle = type => {
     }
 };
 
-export const Map = () => {
+export const Map = ({ rooms, selected }) => {
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../../assets/images/mapxxxhdpi.png')} />
-            {locations.map(({ type, coordinates }) => (
+            {rooms.map(({ coordinates, label, type }) => (
                 <View
                     key={`loc-${coordinates}`}
-                    style={{ ...getLocationStyle(type), left: `${coordinates[0]}%`, top: `${coordinates[1]}%` }}
+                    style={{
+                        ...getLocationStyle(type),
+                        left: `${coordinates[0]}%`,
+                        top: `${coordinates[1]}%`,
+                        display: label === selected ? 'flex' : 'none',
+                    }}
                 />
             ))}
         </View>
     );
+};
+
+Map.propTypes = {
+    rooms: PropTypes.array,
+    selected: PropTypes.string,
 };
 
 export default Map;

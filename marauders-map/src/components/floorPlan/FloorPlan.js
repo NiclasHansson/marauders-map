@@ -67,7 +67,7 @@ export const FloorPlan = () => {
                 <Text style={styles.header}>Torsgatan 14</Text>
                 <View style={styles.mapContainer}>
                     <View style={styles.map}>
-                        <Map />
+                        <Map rooms={eightFloor} selected={selectedRoom} />
                     </View>
                 </View>
                 <View style={styles.roomPicker}>
