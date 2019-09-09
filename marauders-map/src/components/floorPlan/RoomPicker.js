@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import PropTypes from 'prop-types';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import Colors from '../../constants/Colors';
@@ -26,9 +27,14 @@ const styles = StyleSheet.create({
     room: {
         height: itemHeight,
         flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
         borderBottomWidth: 1,
         borderBottomColor: Colors.secondary,
+    },
+    nameContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     lastRoom: {
         borderBottomWidth: 0,
@@ -44,40 +50,29 @@ const styles = StyleSheet.create({
         fontFamily: 'kelly-slab',
         color: Colors.primary,
     },
+    image: {
+        resizeMode: 'center',
+        width: 16,
+        marginRight: 15,
+    },
 });
 
-const roomColors = [Colors.bathroom, Colors.meeting, '#bcd4e0'];
-const rooms = [
-    {
-        label: 'Elevator/Staircase',
-        value: 0,
-        color: roomColors[0 % roomColors.length],
-    },
-    {
-        label: "Alp d'Huez",
-        value: 1,
-        color: roomColors[1 % roomColors.length],
-    },
-    {
-        label: 'Alta',
-        value: 2,
-        color: roomColors[2 % roomColors.length],
-    },
-    {
-        label: 'Aspen',
-        value: 3,
-        color: roomColors[3 % roomColors.length],
-    },
-    {
-        label: 'Chamonix',
-        value: 4,
-        color: roomColors[4 % roomColors.length],
-    },
-];
+const getColor = type => {
+    switch (type) {
+        case 'meeting':
+            return Colors.meeting;
+        case 'bathroom':
+            return Colors.bathroom;
+        case 'kitchen':
+            return Colors.kitchen;
+        case 'stairway':
+            return Colors.stairway;
+        default:
+            return Colors.meeting;
+    }
+};
 
-export const RoomPicker = () => {
-    const [selected, setSelected] = useState(0);
-
+export const RoomPicker = ({ onSelect, rooms, selected }) => {
     return (
         <View style={styles.picker}>
             <LinearGradient
@@ -85,15 +80,20 @@ export const RoomPicker = () => {
                 colors={['rgba(251, 250, 249, 1)', 'rgba(251, 250, 249, 0)']}
                 pointerEvents={'none'}
             />
-            <ScrollView selectedValue={selected} showsVerticalScrollIndicator={false}>
-                {rooms.map(({ color, label, value }, index) => (
+            <ScrollView showsVerticalScrollIndicator={false}>
+                {rooms.map(({ label, type }, index) => (
                     <TouchableOpacity
-                        key={`room-${value}`}
+                        key={`room-${label}`}
                         style={rooms.length === index + 1 ? { ...styles.room, ...styles.lastRoom } : styles.room}
-                        onPress={() => setSelected(value)}
+                        onPress={() => onSelect(label)}
                     >
-                        <View style={{ ...styles.colorBall, backgroundColor: color }} />
-                        <Text style={styles.roomName}>{label}</Text>
+                        <View style={styles.nameContainer}>
+                            <View style={{ ...styles.colorBall, backgroundColor: getColor(type) }} />
+                            <Text style={styles.roomName}>{label}</Text>
+                        </View>
+                        {selected === label && (
+                            <Image style={styles.image} source={require('../../../assets/images/check.png')} />
+                        )}
                     </TouchableOpacity>
                 ))}
             </ScrollView>
@@ -104,6 +104,12 @@ export const RoomPicker = () => {
             />
         </View>
     );
+};
+
+RoomPicker.propTypes = {
+    onSelect: PropTypes.func.required,
+    rooms: PropTypes.array.required,
+    selected: PropTypes.string.required,
 };
 
 export default RoomPicker;

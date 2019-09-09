@@ -1,10 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 import Colors from '../../constants/Colors';
 import FloorPicker from './FloorPicker';
 import Map from './Map';
 import RoomPicker from './RoomPicker';
+import Rooms from './data';
 
 const styles = StyleSheet.create({
     container: {
@@ -57,6 +58,9 @@ const styles = StyleSheet.create({
 });
 
 export const FloorPlan = () => {
+    const eightFloor = Rooms.filter(room => room.floor === 8);
+    const [selectedRoom, onSelectRoom] = useState(eightFloor[0].label);
+
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -67,7 +71,7 @@ export const FloorPlan = () => {
                     </View>
                 </View>
                 <View style={styles.roomPicker}>
-                    <RoomPicker />
+                    <RoomPicker onSelect={onSelectRoom} rooms={eightFloor} selected={selectedRoom} />
                 </View>
             </View>
             <View style={styles.floorPicker}>

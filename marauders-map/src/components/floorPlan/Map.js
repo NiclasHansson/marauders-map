@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 const locations = [
     {
         type: 'meeting',
-        coordinates: [15, 10],
+        coordinates: [0, 0],
         data: {
             name: 'Aspen',
             size: 8,
@@ -45,17 +45,17 @@ const locations = [
     },
     {
         type: 'bathroom',
-        coordinates: [20, 30],
+        coordinates: [100, 0],
         data: {},
     },
     {
         type: 'stairway',
-        coordinates: [70, 25],
+        coordinates: [0, 100],
         data: {},
     },
     {
         type: 'kitchen',
-        coordinates: [35, 65],
+        coordinates: [100, 100],
         data: {},
     },
 ];

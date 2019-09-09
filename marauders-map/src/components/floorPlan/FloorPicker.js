@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 const floors = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export const FloorPicker = () => {
-    const [selected, setSelected] = useState(0);
+    const [selected, setSelected] = useState(6);
 
     return (
         <ScrollView style={styles.container} horizontal showsHorizontalScrollIndicator={false}>
