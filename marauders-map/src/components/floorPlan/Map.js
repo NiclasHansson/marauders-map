@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Image, StyleSheet, View } from 'react-native';
+import { Animated, Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
@@ -62,7 +62,7 @@ const getLocationStyle = type => {
 
 let start = true;
 
-export const Map = ({onRoomPress, rooms, selected }) => {
+export const Map = ({ onRoomPress, rooms, selected }) => {
     const [translateValue] = useState(new Animated.ValueXY({ x: 50, y: -60 }));
 
     if (start) {
@@ -114,7 +114,7 @@ export const Map = ({onRoomPress, rooms, selected }) => {
                         selected === 'All' ||
                         (selected === 'Printer' && type == 'printer') ||
                         (selected === 'Bathroom' && type == 'bathroom')) && (
-                            <TouchableOpacity
+                        <TouchableOpacity
                             onPress={onRoomPress}
                             key={`loc-${coordinates}-${label}`}
                             style={{
