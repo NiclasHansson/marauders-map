@@ -61,18 +61,40 @@ const getColor = type => {
     switch (type) {
         case 'meeting':
             return Colors.meeting;
+        case 'teamroom':
+            return Colors.teamroom;
         case 'bathroom':
             return Colors.bathroom;
         case 'kitchen':
             return Colors.kitchen;
         case 'stairway':
             return Colors.stairway;
+        case 'printer':
+            return Colors.printer;
         default:
             return Colors.meeting;
     }
 };
 
-export const RoomPicker = ({ onSelect, rooms, selected }) => {
+export const RoomPicker = ({ onSelect, onReselect, rooms, selected }) => {
+    let havePrinterAlready = false;
+    let haveBathroomAlready = false;
+    const filteredroom = rooms.filter(room => {
+        if (room.type === 'printer') {
+            if (!havePrinterAlready) {
+                havePrinterAlready = true;
+                return true;
+            }
+        } else if (room.type === 'bathroom') {
+            if (!haveBathroomAlready) {
+                haveBathroomAlready = true;
+                return true;
+            }
+        } else {
+            return true;
+        }
+    }, []);
+
     return (
         <View style={styles.picker}>
             <LinearGradient
@@ -81,11 +103,11 @@ export const RoomPicker = ({ onSelect, rooms, selected }) => {
                 pointerEvents={'none'}
             />
             <ScrollView showsVerticalScrollIndicator={false}>
-                {rooms.map(({ label, type }, index) => (
+                {filteredroom.map(({ label, type }, index) => (
                     <TouchableOpacity
                         key={`room-${label}-${index}`}
-                        style={rooms.length === index + 1 ? { ...styles.room, ...styles.lastRoom } : styles.room}
-                        onPress={() => onSelect(label)}
+                        style={filteredroom.length === index + 1 ? { ...styles.room, ...styles.lastRoom } : styles.room}
+                        onPress={() => (selected === label ? onReselect() : onSelect(label))}
                     >
                         <View style={styles.nameContainer}>
                             <View style={{ ...styles.colorBall, backgroundColor: getColor(type) }} />
@@ -108,6 +130,7 @@ export const RoomPicker = ({ onSelect, rooms, selected }) => {
 
 RoomPicker.propTypes = {
     onSelect: PropTypes.func,
+    onReselect: PropTypes.func,
     rooms: PropTypes.array,
     selected: PropTypes.string,
 };

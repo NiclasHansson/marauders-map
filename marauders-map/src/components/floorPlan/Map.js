@@ -1,6 +1,6 @@
-import React from 'react';
-import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Animated, Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
@@ -12,8 +12,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: '95%',
-        resizeMode: 'center',
+        resizeMode: 'contain',
     },
     dot: {
         position: 'absolute',
@@ -34,30 +33,91 @@ const styles = StyleSheet.create({
     kitchen: {
         backgroundColor: Colors.kitchen,
     },
+    printer: {
+        backgroundColor: Colors.printer,
+    },
+    teamroom: {
+        backgroundColor: Colors.teamroom,
+    },
 });
 
 const getLocationStyle = type => {
     switch (type) {
         case 'meeting':
             return { ...styles.dot, ...styles.meeting };
+        case 'teamroom':
+            return { ...styles.dot, ...styles.teamroom };
         case 'bathroom':
             return { ...styles.dot, ...styles.bathroom };
         case 'stairway':
             return { ...styles.dot, ...styles.stairway };
         case 'kitchen':
             return { ...styles.dot, ...styles.kitchen };
+        case 'printer':
+            return { ...styles.dot, ...styles.printer };
         default:
             return styles.dot;
     }
 };
 
+let start = true;
+
 export const Map = ({ onRoomPress, rooms, selected }) => {
+    const [translateValue] = useState(new Animated.ValueXY({ x: 50, y: -60 }));
+
+    if (start) {
+        Animated.loop(
+            Animated.sequence([
+                Animated.timing(translateValue, {
+                    toValue: { x: 300, y: -60 },
+                    duration: 20000,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(translateValue, {
+                    toValue: { x: 50, y: -60 },
+                    duration: 10000,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(translateValue, {
+                    toValue: { x: 180, y: 80 },
+                    duration: 15000,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(translateValue, {
+                    toValue: { x: 210, y: 80 },
+                    duration: 5000,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(translateValue, {
+                    toValue: { x: 210, y: -60 },
+                    duration: 15000,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(translateValue, {
+                    toValue: { x: 50, y: -60 },
+                    duration: 10000,
+                    useNativeDriver: true,
+                }),
+            ])
+        ).start();
+        start = false;
+    }
+
+    const translateTransform = translateValue.getTranslateTransform();
+
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../../assets/images/mapxxxhdpi.png')} />
             {rooms.map(
                 ({ coordinates, label, type }) =>
+<<<<<<< HEAD
                     (label === selected || selected === 'All') && (
+=======
+                    (label === selected ||
+                        selected === 'All' ||
+                        (selected === 'Printer' && type == 'printer') ||
+                        (selected === 'Bathroom' && type == 'bathroom')) && (
+>>>>>>> 2a1b508ab93f8d3dc0beb519f8596423a5496cdb
                         <TouchableOpacity
                             onPress={onRoomPress}
                             key={`loc-${coordinates}-${label}`}
@@ -68,6 +128,16 @@ export const Map = ({ onRoomPress, rooms, selected }) => {
                             }}
                         />
                     )
+            )}
+            {rooms && rooms.length && rooms[0].floor === 8 && (
+                <Animated.View
+                    key={`loc-asa`}
+                    style={{
+                        ...styles.dot,
+                        backgroundColor: 'red',
+                        transform: translateTransform,
+                    }}
+                />
             )}
         </View>
     );

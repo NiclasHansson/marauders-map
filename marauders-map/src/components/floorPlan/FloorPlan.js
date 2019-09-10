@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { StyleSheet, Text, TextInput, View } from 'react-native';
+=======
+import { StyleSheet, Text, View } from 'react-native';
+>>>>>>> 2a1b508ab93f8d3dc0beb519f8596423a5496cdb
 import Colors from '../../constants/Colors';
 import FloorPicker from './FloorPicker';
 import Map from './Map';
@@ -66,7 +70,11 @@ export const FloorPlan = () => {
     const eightFloor = Rooms.filter(room => room.floor === 8);
     const [selectedRoom, onSelectRoom] = useState(eightFloor[0].label);
     const [showMenu, setShowMenu] = useState(false);
+<<<<<<< HEAD
     console.log('NICLAS', showMenu);
+=======
+    const selectedRoomData = eightFloor.find(room => room.label === selectedRoom);
+>>>>>>> 2a1b508ab93f8d3dc0beb519f8596423a5496cdb
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -77,14 +85,23 @@ export const FloorPlan = () => {
                     </View>
                 </View>
                 <View style={styles.roomPicker}>
-                    <RoomPicker onSelect={onSelectRoom} rooms={eightFloor} selected={selectedRoom} />
+                    <RoomPicker
+                        onSelect={onSelectRoom}
+                        onReselect={() => setShowMenu(true)}
+                        rooms={eightFloor}
+                        selected={selectedRoom}
+                    />
                 </View>
             </View>
 
             <View style={styles.floorPicker}>
                 <FloorPicker />
             </View>
+<<<<<<< HEAD
             {showMenu && <Menu onClose={() => setShowMenu(false)} />}
+=======
+            {showMenu && <Menu data={selectedRoomData} onClose={() => setShowMenu(false)} />}
+>>>>>>> 2a1b508ab93f8d3dc0beb519f8596423a5496cdb
         </View>
     );
 };
