@@ -5,58 +5,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import Colors from '../../constants/Colors';
 
-const itemHeight = 60;
-const styles = StyleSheet.create({
-    picker: {
-        maxHeight: 170,
-        width: '90%',
-        position: 'relative',
-    },
-    fade: {
-        width: '100%',
-        height: itemHeight / 2,
-        position: 'absolute',
-        zIndex: 1,
-    },
-    fadeUpper: {
-        top: 0,
-    },
-    fadeLower: {
-        bottom: 0,
-    },
-    room: {
-        height: itemHeight,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderBottomWidth: 1,
-        borderBottomColor: Colors.secondary,
-    },
-    nameContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    lastRoom: {
-        borderBottomWidth: 0,
-    },
-    colorBall: {
-        width: 13,
-        height: 13,
-        borderRadius: 100,
-        marginRight: 15,
-    },
-    roomName: {
-        fontSize: 20,
-        fontFamily: 'kelly-slab',
-        color: Colors.primary,
-    },
-    image: {
-        resizeMode: 'center',
-        width: 16,
-        marginRight: 15,
-    },
-});
-
 const getColor = type => {
     switch (type) {
         case 'meeting':
@@ -127,6 +75,57 @@ export const RoomPicker = ({ onSelect, onReselect, rooms, selected }) => {
         </View>
     );
 };
+
+const itemHeight = 60;
+const styles = StyleSheet.create({
+    picker: {
+        width: '90%',
+        position: 'relative',
+    },
+    fade: {
+        width: '100%',
+        height: itemHeight / 2,
+        position: 'absolute',
+        zIndex: 1,
+    },
+    fadeUpper: {
+        top: 0,
+    },
+    fadeLower: {
+        bottom: 0,
+    },
+    room: {
+        height: itemHeight,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.secondary,
+    },
+    nameContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    lastRoom: {
+        borderBottomWidth: 0,
+    },
+    colorBall: {
+        width: 13,
+        height: 13,
+        borderRadius: 100,
+        marginRight: 15,
+    },
+    roomName: {
+        fontSize: 20,
+        fontFamily: 'kelly-slab',
+        color: Colors.primary,
+    },
+    image: {
+        resizeMode: 'center',
+        width: 16,
+        marginRight: 15,
+    },
+});
 
 RoomPicker.propTypes = {
     onSelect: PropTypes.func,

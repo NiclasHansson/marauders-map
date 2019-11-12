@@ -12,7 +12,7 @@
         coordinates: [80, 27],
     },
     {
-        label: "Torsköket",
+        label: 'Torsköket',
         floor: 8,
         type: 'kitchen',
         coordinates: [23, 40],
@@ -52,7 +52,7 @@
         label: 'Aspen',
         floor: 8,
         type: 'meeting',
-        coordinates: [92,70],
+        coordinates: [92, 70],
         data: {
             size: 14,
             projector: true,
@@ -77,7 +77,7 @@
         },
     },
     {
-        label: "Chamonix",
+        label: 'Chamonix',
         floor: 8,
         type: 'meeting',
         coordinates: [47, 80],
@@ -91,7 +91,7 @@
         },
     },
     {
-        label: "Flottsbro",
+        label: 'Flottsbro',
         floor: 8,
         type: 'teamroom',
         coordinates: [54, 33],
@@ -146,7 +146,7 @@
         },
     },
     {
-        label: "St Anton",
+        label: 'St Anton',
         floor: 8,
         type: 'meeting',
         coordinates: [60, 72],
@@ -174,7 +174,7 @@
         },
     },
     {
-        label: "Sölden",
+        label: 'Sölden',
         floor: 8,
         type: 'meeting',
         coordinates: [54, 53],
@@ -188,7 +188,7 @@
         },
     },
     {
-        label: "Tignes",
+        label: 'Tignes',
         floor: 8,
         type: 'meeting',
         coordinates: [44, 68],
@@ -230,7 +230,7 @@
         },
     },
     {
-        label: "Åre",
+        label: 'Åre',
         floor: 8,
         type: 'meeting',
         coordinates: [4, 15],
@@ -244,7 +244,7 @@
         },
     },
     {
-        label: "Teamrum DIGI Management",
+        label: 'Teamrum DIGI Management',
         floor: 8,
         type: 'teamroom',
         coordinates: [4, 21],
@@ -258,7 +258,7 @@
         },
     },
     {
-        label: "Teamrum Yttrium/Lead fokus",
+        label: 'Teamrum Yttrium/Lead fokus',
         floor: 8,
         type: 'teamroom',
         coordinates: [26, 44],
@@ -272,7 +272,7 @@
         },
     },
     {
-        label: "Teamrum Yttrium/Lead Stå",
+        label: 'Teamrum Yttrium/Lead Stå',
         floor: 8,
         type: 'teamroom',
         coordinates: [32, 52],
@@ -286,7 +286,7 @@
         },
     },
     {
-        label: "Teamrum Yttrium/Lead Sitta",
+        label: 'Teamrum Yttrium/Lead Sitta',
         floor: 8,
         type: 'teamroom',
         coordinates: [29, 48],
@@ -300,7 +300,7 @@
         },
     },
     {
-        label: "Teamrum ROAD",
+        label: 'Teamrum ROAD',
         floor: 8,
         type: 'teamroom',
         coordinates: [34, 62],
@@ -314,7 +314,7 @@
         },
     },
     {
-        label: "Teamrum ROAD Verbier",
+        label: 'Teamrum ROAD Verbier',
         floor: 8,
         type: 'teamroom',
         coordinates: [37, 66],
@@ -328,7 +328,7 @@
         },
     },
     {
-        label: "Teamrum ROAD Morzine",
+        label: 'Teamrum ROAD Morzine',
         floor: 8,
         type: 'teamroom',
         coordinates: [40, 70],
@@ -356,7 +356,7 @@
         },
     },
     {
-        label: "Teamrum GLUE och Finanze Cortina",
+        label: 'Teamrum GLUE och Finanze Cortina',
         floor: 8,
         type: 'teamroom',
         coordinates: [54, 38],
@@ -369,7 +369,7 @@
         },
     },
     {
-        label: "Teamrum MIAP 2",
+        label: 'Teamrum MIAP 2',
         floor: 8,
         type: 'teamroom',
         coordinates: [54, 43],
@@ -382,7 +382,7 @@
         },
     },
     {
-        label: "Teamrum MIAP 1",
+        label: 'Teamrum MIAP 1',
         floor: 8,
         type: 'teamroom',
         coordinates: [54, 48],
@@ -438,40 +438,19 @@
         data: {},
     },
     {
-        label: "Printer",
+        label: 'Printer',
         floor: 8,
         type: 'printer',
         coordinates: [50, 84],
         data: {},
     },
     {
-        label: "Printer",
+        label: 'Printer',
         floor: 8,
         type: 'printer',
         coordinates: [83, 65],
         data: {},
-    }
+    },
 ];
 
 export default Rooms;
-
-
-    
-
-
-    
-
-        
-
-        
-            
-
-            
-
-                
-
-                
-
-                    
-
-                            

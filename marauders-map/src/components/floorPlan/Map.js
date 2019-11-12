@@ -4,43 +4,6 @@ import { Animated, Image, StyleSheet, View, TouchableOpacity } from 'react-nativ
 
 import Colors from '../../constants/Colors';
 
-const styles = StyleSheet.create({
-    container: {
-        justifyContent: 'center',
-        height: '100%',
-        position: 'relative',
-    },
-    image: {
-        width: '100%',
-        resizeMode: 'contain',
-    },
-    dot: {
-        position: 'absolute',
-        width: 13,
-        height: 13,
-        borderRadius: 100,
-        marginRight: 15,
-    },
-    meeting: {
-        backgroundColor: Colors.meeting,
-    },
-    bathroom: {
-        backgroundColor: Colors.bathroom,
-    },
-    stairway: {
-        backgroundColor: Colors.stairway,
-    },
-    kitchen: {
-        backgroundColor: Colors.kitchen,
-    },
-    printer: {
-        backgroundColor: Colors.printer,
-    },
-    teamroom: {
-        backgroundColor: Colors.teamroom,
-    },
-});
-
 const getLocationStyle = type => {
     switch (type) {
         case 'meeting':
@@ -63,38 +26,38 @@ const getLocationStyle = type => {
 let start = true;
 
 export const Map = ({ onRoomPress, rooms, selected }) => {
-    const [translateValue] = useState(new Animated.ValueXY({ x: 50, y: -60 }));
+    const [translateValue] = useState(new Animated.ValueXY({ x: 40, y: -58 }));
 
     if (start) {
         Animated.loop(
             Animated.sequence([
                 Animated.timing(translateValue, {
-                    toValue: { x: 300, y: -60 },
+                    toValue: { x: 300, y: -58 },
                     duration: 20000,
                     useNativeDriver: true,
                 }),
                 Animated.timing(translateValue, {
-                    toValue: { x: 50, y: -60 },
+                    toValue: { x: 35, y: -58 },
                     duration: 10000,
                     useNativeDriver: true,
                 }),
                 Animated.timing(translateValue, {
-                    toValue: { x: 180, y: 80 },
+                    toValue: { x: 165, y: 80 },
                     duration: 15000,
                     useNativeDriver: true,
                 }),
                 Animated.timing(translateValue, {
-                    toValue: { x: 210, y: 80 },
+                    toValue: { x: 190, y: 80 },
                     duration: 5000,
                     useNativeDriver: true,
                 }),
                 Animated.timing(translateValue, {
-                    toValue: { x: 210, y: -60 },
+                    toValue: { x: 190, y: -58 },
                     duration: 15000,
                     useNativeDriver: true,
                 }),
                 Animated.timing(translateValue, {
-                    toValue: { x: 50, y: -60 },
+                    toValue: { x: 40, y: -58 },
                     duration: 10000,
                     useNativeDriver: true,
                 }),
@@ -138,6 +101,43 @@ export const Map = ({ onRoomPress, rooms, selected }) => {
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        justifyContent: 'center',
+        height: '100%',
+        position: 'relative',
+    },
+    image: {
+        width: '100%',
+        resizeMode: 'contain',
+    },
+    dot: {
+        position: 'absolute',
+        width: 13,
+        height: 13,
+        borderRadius: 100,
+        marginRight: 15,
+    },
+    meeting: {
+        backgroundColor: Colors.meeting,
+    },
+    bathroom: {
+        backgroundColor: Colors.bathroom,
+    },
+    stairway: {
+        backgroundColor: Colors.stairway,
+    },
+    kitchen: {
+        backgroundColor: Colors.kitchen,
+    },
+    printer: {
+        backgroundColor: Colors.printer,
+    },
+    teamroom: {
+        backgroundColor: Colors.teamroom,
+    },
+});
 
 Map.propTypes = {
     rooms: PropTypes.array,

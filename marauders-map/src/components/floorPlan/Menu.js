@@ -1,6 +1,51 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 import Colors from '../../constants/Colors';
+import PropTypes from 'prop-types';
+
+export const Menu = ({ onClose, data }) => {
+    return (
+        <View style={styles.container}>
+            <View style={styles.containerInner}>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.header}>{data.label}</Text>
+                    <View style={styles.closeContainer}>
+                        <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+                            <Image style={styles.stretch} source={require('../../../assets/images/error.png')} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View style={styles.wrapper}>
+                    <View style={styles.rumDetails}>
+                        <Image style={styles.stretch} source={require('../../../assets/images/size.png')} />
+                        <View>
+                            <Text style={styles.upperText}> 4 personer </Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.rumDetails}>
+                        <Image style={styles.stretch} source={require('../../../assets/images/video.png')} />
+                        <View>
+                            <Text style={styles.upperText}> VideoUtrustning för Skype </Text>
+                        </View>
+                    </View>
+                    <View style={styles.rumDetails}>
+                        <Image style={styles.stretch} source={require('../../../assets/images/tv.png')} />
+                        <View>
+                            <Text style={styles.upperText}> TV </Text>
+                        </View>
+                    </View>
+                    <View style={styles.rumDetails}>
+                        <Image style={styles.stretch} source={require('../../../assets/images/other.png')} />
+                        <View>
+                            <Text style={styles.upperText}> More... </Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -76,48 +121,11 @@ const styles = StyleSheet.create({
     },
 });
 
-export const Menu = ({ onClose, data }) => {
-    return (
-        <View style={styles.container}>
-            <View style={styles.containerInner}>
-                <View style={styles.titleContainer}>
-                    <Text style={styles.header}>{data.label}</Text>
-                    <View style={styles.closeContainer}>
-                        <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-                            <Image style={styles.stretch} source={require('../../../assets/images/error.png')} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={styles.wrapper}>
-                    <View style={styles.rumDetails}>
-                        <Image style={styles.stretch} source={require('../../../assets/images/size.png')} />
-                        <View>
-                            <Text style={styles.upperText}> 4 personer </Text>
-                        </View>
-                    </View>
-
-                    <View style={styles.rumDetails}>
-                        <Image style={styles.stretch} source={require('../../../assets/images/video.png')} />
-                        <View>
-                            <Text style={styles.upperText}> VideoUtrustning för Skype </Text>
-                        </View>
-                    </View>
-                    <View style={styles.rumDetails}>
-                        <Image style={styles.stretch} source={require('../../../assets/images/tv.png')} />
-                        <View>
-                            <Text style={styles.upperText}> TV </Text>
-                        </View>
-                    </View>
-                    <View style={styles.rumDetails}>
-                        <Image style={styles.stretch} source={require('../../../assets/images/other.png')} />
-                        <View>
-                            <Text style={styles.upperText}> More... </Text>
-                        </View>
-                    </View>
-                </View>
-            </View>
-        </View>
-    );
+Menu.propTypes = {
+    onClose: PropTypes.func,
+    data: PropTypes.shape({
+        label: PropTypes.string,
+    }),
 };
 
 export default Menu;

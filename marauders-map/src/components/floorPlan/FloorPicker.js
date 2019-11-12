@@ -3,6 +3,27 @@ import { TouchableOpacity, StyleSheet, Text, ScrollView } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
+const floors = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+export const FloorPicker = () => {
+    const [selected, setSelected] = useState(6);
+
+    return (
+        <ScrollView style={styles.container} horizontal showsHorizontalScrollIndicator={false}>
+            {floors.map((floor, index) => (
+                <TouchableOpacity
+                    key={`floor-${floor}-${index}`}
+                    onPress={() => setSelected(index)}
+                    style={index === selected ? { ...styles.button, ...styles.selected } : styles.button}
+                >
+                    <Text style={styles.upperText}>Floor</Text>
+                    <Text style={styles.lowerText}>{floor}</Text>
+                </TouchableOpacity>
+            ))}
+        </ScrollView>
+    );
+};
+
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 3,
@@ -33,26 +54,5 @@ const styles = StyleSheet.create({
         color: Colors.primary,
     },
 });
-
-const floors = [2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-export const FloorPicker = () => {
-    const [selected, setSelected] = useState(6);
-
-    return (
-        <ScrollView style={styles.container} horizontal showsHorizontalScrollIndicator={false}>
-            {floors.map((floor, index) => (
-                <TouchableOpacity
-                    key={`floor-${floor}-${index}`}
-                    onPress={() => setSelected(index)}
-                    style={index === selected ? { ...styles.button, ...styles.selected } : styles.button}
-                >
-                    <Text style={styles.upperText}>Floor</Text>
-                    <Text style={styles.lowerText}>{floor}</Text>
-                </TouchableOpacity>
-            ))}
-        </ScrollView>
-    );
-};
 
 export default FloorPicker;
