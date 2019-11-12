@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Image, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
@@ -23,51 +23,7 @@ const getLocationStyle = type => {
     }
 };
 
-let start = true;
-
 export const Map = ({ onRoomPress, rooms, selected }) => {
-    const [translateValue] = useState(new Animated.ValueXY({ x: 40, y: -58 }));
-
-    if (start) {
-        Animated.loop(
-            Animated.sequence([
-                Animated.timing(translateValue, {
-                    toValue: { x: 300, y: -58 },
-                    duration: 20000,
-                    useNativeDriver: true,
-                }),
-                Animated.timing(translateValue, {
-                    toValue: { x: 35, y: -58 },
-                    duration: 10000,
-                    useNativeDriver: true,
-                }),
-                Animated.timing(translateValue, {
-                    toValue: { x: 165, y: 80 },
-                    duration: 15000,
-                    useNativeDriver: true,
-                }),
-                Animated.timing(translateValue, {
-                    toValue: { x: 190, y: 80 },
-                    duration: 5000,
-                    useNativeDriver: true,
-                }),
-                Animated.timing(translateValue, {
-                    toValue: { x: 190, y: -58 },
-                    duration: 15000,
-                    useNativeDriver: true,
-                }),
-                Animated.timing(translateValue, {
-                    toValue: { x: 40, y: -58 },
-                    duration: 10000,
-                    useNativeDriver: true,
-                }),
-            ])
-        ).start();
-        start = false;
-    }
-
-    const translateTransform = translateValue.getTranslateTransform();
-
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={require('../../../assets/images/mapxxxhdpi.png')} />
@@ -87,16 +43,6 @@ export const Map = ({ onRoomPress, rooms, selected }) => {
                             }}
                         />
                     )
-            )}
-            {rooms && rooms.length && rooms[0].floor === 8 && (
-                <Animated.View
-                    key={`loc-asa`}
-                    style={{
-                        ...styles.dot,
-                        backgroundColor: 'red',
-                        transform: translateTransform,
-                    }}
-                />
             )}
         </View>
     );
