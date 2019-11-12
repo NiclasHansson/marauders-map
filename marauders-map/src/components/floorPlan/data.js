@@ -1,4 +1,4 @@
-﻿export const Rooms = [
+﻿export const rooms = [
     {
         label: 'All',
         floor: 8,
@@ -9,7 +9,7 @@
         label: 'Dalaköket',
         floor: 8,
         type: 'kitchen',
-        coordinates: [80, 27],
+        coordinates: [81, 26],
     },
     {
         label: 'Torsköket',
@@ -66,7 +66,7 @@
         label: 'Banff',
         floor: 8,
         type: 'meeting',
-        coordinates: [92, 28],
+        coordinates: [94, 28],
         data: {
             size: 6,
             projector: false,
@@ -80,7 +80,7 @@
         label: 'Chamonix',
         floor: 8,
         type: 'meeting',
-        coordinates: [47, 80],
+        coordinates: [45, 82],
         data: {
             size: 15,
             projector: true,
@@ -107,7 +107,7 @@
         label: 'Fernie',
         floor: 8,
         type: 'meeting',
-        coordinates: [90, 10],
+        coordinates: [90.5, 5],
         data: {
             size: 12,
             projector: true,
@@ -121,7 +121,7 @@
         label: 'Hemsedal',
         floor: 8,
         type: 'meeting',
-        coordinates: [57, 10],
+        coordinates: [57.5, 5],
         data: {
             size: 12,
             projector: true,
@@ -135,7 +135,7 @@
         label: 'Kitsbuhel',
         floor: 8,
         type: 'meeting',
-        coordinates: [48, 20],
+        coordinates: [49, 18],
         data: {
             size: 2,
             projector: false,
@@ -149,7 +149,7 @@
         label: 'St Anton',
         floor: 8,
         type: 'meeting',
-        coordinates: [60, 72],
+        coordinates: [61, 73],
         data: {
             size: 14,
             projector: true,
@@ -163,7 +163,7 @@
         label: 'Stryn',
         floor: 8,
         type: 'meeting',
-        coordinates: [39, 20],
+        coordinates: [39, 18],
         data: {
             size: 4,
             projector: false,
@@ -191,7 +191,7 @@
         label: 'Tignes',
         floor: 8,
         type: 'meeting',
-        coordinates: [44, 68],
+        coordinates: [43, 68],
         data: {
             size: 8,
             projector: true,
@@ -205,7 +205,7 @@
         label: 'Trysil',
         floor: 8,
         type: 'meeting',
-        coordinates: [72, 20],
+        coordinates: [72, 18],
         data: {
             size: 8,
             projector: false,
@@ -233,7 +233,7 @@
         label: 'Åre',
         floor: 8,
         type: 'meeting',
-        coordinates: [4, 15],
+        coordinates: [4, 13],
         data: {
             size: 12,
             projector: true,
@@ -247,7 +247,7 @@
         label: 'Teamrum DIGI Management',
         floor: 8,
         type: 'teamroom',
-        coordinates: [4, 21],
+        coordinates: [4, 19],
         data: {
             size: 4,
             projector: false,
@@ -261,7 +261,7 @@
         label: 'Teamrum Yttrium/Lead fokus',
         floor: 8,
         type: 'teamroom',
-        coordinates: [26, 44],
+        coordinates: [26, 43],
         data: {
             size: 4,
             projector: false,
@@ -303,7 +303,7 @@
         label: 'Teamrum ROAD',
         floor: 8,
         type: 'teamroom',
-        coordinates: [34, 62],
+        coordinates: [32, 63],
         data: {
             size: 2,
             projector: false,
@@ -317,7 +317,7 @@
         label: 'Teamrum ROAD Verbier',
         floor: 8,
         type: 'teamroom',
-        coordinates: [37, 66],
+        coordinates: [35, 67],
         data: {
             size: 2,
             projector: false,
@@ -331,7 +331,7 @@
         label: 'Teamrum ROAD Morzine',
         floor: 8,
         type: 'teamroom',
-        coordinates: [40, 70],
+        coordinates: [38, 71],
         data: {
             size: 2,
             projector: false,
@@ -345,7 +345,7 @@
         label: "Teamrum ROAD Val d'Isere",
         floor: 8,
         type: 'teamroom',
-        coordinates: [43, 75],
+        coordinates: [41, 76],
         data: {
             size: 2,
             projector: false,
@@ -396,56 +396,56 @@
     },
 
     {
-        label: 'Bathroom',
+        label: 'Bathrooms',
         floor: 8,
         type: 'bathroom',
         coordinates: [23, 28],
         data: {},
     },
     {
-        label: 'Bathroom',
+        label: 'Bathrooms',
         floor: 8,
         type: 'bathroom',
-        coordinates: [81, 20],
+        coordinates: [81, 18],
         data: {},
     },
     {
-        label: 'Bathroom',
+        label: 'Bathrooms',
         floor: 8,
         type: 'bathroom',
         coordinates: [40, 63],
         data: {},
     },
     {
-        label: 'Bathroom',
+        label: 'Bathrooms',
         floor: 8,
         type: 'bathroom',
         coordinates: [87, 65],
         data: {},
     },
     {
-        label: 'Printer',
+        label: 'Printers',
         floor: 8,
         type: 'printer',
-        coordinates: [94, 10],
+        coordinates: [94, 9],
         data: {},
     },
     {
-        label: 'Printer',
+        label: 'Printers',
         floor: 8,
         type: 'printer',
         coordinates: [15, 28],
         data: {},
     },
     {
-        label: 'Printer',
+        label: 'Printers',
         floor: 8,
         type: 'printer',
-        coordinates: [50, 84],
+        coordinates: [51, 89],
         data: {},
     },
     {
-        label: 'Printer',
+        label: 'Printers',
         floor: 8,
         type: 'printer',
         coordinates: [83, 65],
@@ -453,4 +453,4 @@
     },
 ];
 
-export default Rooms;
+export default rooms;

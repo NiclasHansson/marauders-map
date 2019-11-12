@@ -4,29 +4,68 @@ import Colors from '../../constants/Colors';
 import FloorPicker from './FloorPicker';
 import Map from './Map';
 import RoomPicker from './RoomPicker';
-import Rooms from './data';
+import rooms from './data';
 import Menu from './Menu';
 
 export const FloorPlan = () => {
-    const eightFloor = Rooms.filter(room => room.floor === 8);
-    const [selectedRoom, onSelectRoom] = useState(eightFloor[0].label);
     const [showMenu, setShowMenu] = useState(false);
-    const selectedRoomData = eightFloor.find(room => room.label === selectedRoom);
+
+    const [selectedRoomLabel, setSelectedRoomLabel] = useState('');
+
+    const onRoomPress = index => {
+        setSelectedRoomIndex(index);
+        setSelectedRoomLabel(filteredRooms[index] && filteredRooms[index].label);
+    };
+
+    const [selectedRoomIndex, setSelectedRoomIndex] = useState(0);
+    const [filteredRooms, setFilteredRooms] = React.useState([]);
+    const eightFloor = rooms.filter(room => room.floor === 8);
+    React.useEffect(() => {
+        let havePrinterAlready = false;
+        let haveBathroomAlready = false;
+
+        const specialRoomTypes = ['all', 'printer', 'bathroom'];
+        const sortedRooms = eightFloor.sort((a, b) => {
+            if (specialRoomTypes.includes(a.type) && !specialRoomTypes.includes(b.type)) {
+                return -1;
+            } else if (specialRoomTypes.includes(b.type) && !specialRoomTypes.includes(a.type)) {
+                return 1;
+            }
+            return 0;
+        });
+
+        const sortedFilteredRooms = sortedRooms.filter(room => {
+            if (room.type === 'printer') {
+                if (!havePrinterAlready) {
+                    havePrinterAlready = true;
+                    return true;
+                }
+            } else if (room.type === 'bathroom') {
+                if (!haveBathroomAlready) {
+                    haveBathroomAlready = true;
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }, []);
+        setFilteredRooms(sortedFilteredRooms);
+        setSelectedRoomLabel(sortedFilteredRooms[selectedRoomIndex] && sortedFilteredRooms[selectedRoomIndex].label);
+    }, [eightFloor]);
+
     return (
         <View style={styles.container}>
             <View style={styles.content}>
                 <Text style={styles.header}>Torsgatan 14</Text>
                 <View style={styles.mapContainer}>
-                    <View style={styles.map}>
-                        <Map rooms={eightFloor} selected={selectedRoom} onRoomPress={() => setShowMenu(true)} />
-                    </View>
+                    <Map rooms={eightFloor} selected={selectedRoomLabel} onRoomPress={() => setShowMenu(true)} />
                 </View>
                 <View style={styles.roomPicker}>
                     <RoomPicker
-                        onSelect={onSelectRoom}
+                        onSelect={onRoomPress}
                         onReselect={() => setShowMenu(true)}
-                        rooms={eightFloor}
-                        selected={selectedRoom}
+                        rooms={filteredRooms}
+                        selected={selectedRoomIndex}
                     />
                 </View>
             </View>
@@ -34,7 +73,6 @@ export const FloorPlan = () => {
             <View style={styles.floorPicker}>
                 <FloorPicker />
             </View>
-            {showMenu && <Menu data={selectedRoomData} onClose={() => setShowMenu(false)} />}
         </View>
     );
 };
@@ -45,9 +83,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     content: {
-        width: '90%',
-        marginTop: 100,
+        width: '100%',
         flex: 1,
+        marginTop: 100,
+        paddingHorizontal: 10,
         alignItems: 'center',
     },
     header: {
@@ -58,13 +97,7 @@ const styles = StyleSheet.create({
     },
     mapContainer: {
         width: '100%',
-    },
-    map: {
-        height: 260,
         marginTop: 40,
-    },
-    mapText: {
-        fontFamily: 'kelly-slab',
     },
     roomPicker: {
         flex: 1,
@@ -72,25 +105,10 @@ const styles = StyleSheet.create({
         marginTop: 20,
         alignItems: 'center',
     },
-    search: {
-        width: '100%',
-        height: 60,
-        marginTop: 30,
-        paddingHorizontal: 10,
-        borderWidth: 1,
-        borderColor: Colors.secondary,
-        borderRadius: 5,
-        fontFamily: 'kelly-slab',
-    },
     floorPicker: {
         width: '100%',
         marginTop: 30,
         alignItems: 'center',
-    },
-    containerInner: {
-        zIndex: 1,
-        position: 'absolute',
-        //opacity: 0.9,
     },
 });
 

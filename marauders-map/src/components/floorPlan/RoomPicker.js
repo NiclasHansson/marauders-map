@@ -1,9 +1,11 @@
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import Colors from '../../constants/Colors';
+
+const ITEM_HEIGHT = 60;
 
 const getColor = type => {
     switch (type) {
@@ -25,43 +27,34 @@ const getColor = type => {
 };
 
 export const RoomPicker = ({ onSelect, onReselect, rooms, selected }) => {
-    let havePrinterAlready = false;
-    let haveBathroomAlready = false;
-    const filteredroom = rooms.filter(room => {
-        if (room.type === 'printer') {
-            if (!havePrinterAlready) {
-                havePrinterAlready = true;
-                return true;
-            }
-        } else if (room.type === 'bathroom') {
-            if (!haveBathroomAlready) {
-                haveBathroomAlready = true;
-                return true;
-            }
-        } else {
-            return true;
-        }
-    }, []);
+    const [continerHeight, setContinerHeight] = React.useState(0);
+    const scrollViewRef = React.useRef(null);
+
+    React.useEffect(() => {
+        scrollViewRef.current.scrollTo({
+            y: (selected + 0.5) * ITEM_HEIGHT - continerHeight / 2,
+        });
+    }, [selected]);
 
     return (
-        <View style={styles.picker}>
+        <View onLayout={e => setContinerHeight(e.nativeEvent.layout.height)} style={styles.picker}>
             <LinearGradient
                 style={{ ...styles.fade, ...styles.fadeUpper }}
                 colors={['rgba(251, 250, 249, 1)', 'rgba(251, 250, 249, 0)']}
                 pointerEvents={'none'}
             />
-            <ScrollView showsVerticalScrollIndicator={false}>
-                {filteredroom.map(({ label, type }, index) => (
+            <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false}>
+                {rooms.map(({ label, type }, index) => (
                     <TouchableOpacity
                         key={`room-${label}-${index}`}
-                        style={filteredroom.length === index + 1 ? { ...styles.room, ...styles.lastRoom } : styles.room}
-                        onPress={() => (selected === label ? onReselect() : onSelect(label))}
+                        style={rooms.length === index + 1 ? { ...styles.room, ...styles.lastRoom } : styles.room}
+                        onPress={() => (selected === index ? onReselect() : onSelect(index))}
                     >
                         <View style={styles.nameContainer}>
                             <View style={{ ...styles.colorBall, backgroundColor: getColor(type) }} />
                             <Text style={styles.roomName}>{label}</Text>
                         </View>
-                        {selected === label && (
+                        {selected === index && (
                             <Image style={styles.image} source={require('../../../assets/images/check.png')} />
                         )}
                     </TouchableOpacity>
@@ -76,7 +69,6 @@ export const RoomPicker = ({ onSelect, onReselect, rooms, selected }) => {
     );
 };
 
-const itemHeight = 60;
 const styles = StyleSheet.create({
     picker: {
         width: '90%',
@@ -84,7 +76,7 @@ const styles = StyleSheet.create({
     },
     fade: {
         width: '100%',
-        height: itemHeight / 2,
+        height: ITEM_HEIGHT / 2,
         position: 'absolute',
         zIndex: 1,
     },
@@ -95,7 +87,7 @@ const styles = StyleSheet.create({
         bottom: 0,
     },
     room: {
-        height: itemHeight,
+        height: ITEM_HEIGHT,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -121,7 +113,7 @@ const styles = StyleSheet.create({
         color: Colors.primary,
     },
     image: {
-        resizeMode: 'center',
+        resizeMode: 'contain',
         width: 16,
         marginRight: 15,
     },
@@ -131,7 +123,7 @@ RoomPicker.propTypes = {
     onSelect: PropTypes.func,
     onReselect: PropTypes.func,
     rooms: PropTypes.array,
-    selected: PropTypes.string,
+    selected: PropTypes.number,
 };
 
 export default RoomPicker;

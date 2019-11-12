@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Dimensions, Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
@@ -26,13 +26,17 @@ const getLocationStyle = type => {
 export const Map = ({ onRoomPress, rooms, selected }) => {
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={require('../../../assets/images/mapxxxhdpi.png')} />
+            <Image
+                resizeMode="contain"
+                style={styles.image}
+                source={require('../../../assets/images/mapxxxhdpi.png')}
+            />
             {rooms.map(
                 ({ coordinates, label, type }) =>
-                    (label === selected ||
+                    (selected === label ||
                         selected === 'All' ||
-                        (selected === 'Printer' && type == 'printer') ||
-                        (selected === 'Bathroom' && type == 'bathroom')) && (
+                        (selected === 'Printers' && type == 'printer') ||
+                        (selected === 'Bathrooms' && type == 'bathroom')) && (
                         <TouchableOpacity
                             onPress={onRoomPress}
                             key={`loc-${coordinates}-${label}`}
@@ -50,13 +54,11 @@ export const Map = ({ onRoomPress, rooms, selected }) => {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        height: '100%',
         position: 'relative',
     },
     image: {
-        width: '100%',
-        resizeMode: 'contain',
+        width: Dimensions.get('window').width - 20,
+        height: (Dimensions.get('window').width - 20) / 1.39,
     },
     dot: {
         position: 'absolute',

@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
-import { TouchableOpacity, StyleSheet, Text, ScrollView } from 'react-native';
+import React from 'react';
+import { Dimensions, TouchableOpacity, StyleSheet, Text, ScrollView } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
+const ITEM_WIDTH = 100;
 const floors = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export const FloorPicker = () => {
-    const [selected, setSelected] = useState(6);
+    const [selected, setSelected] = React.useState(6);
+    const scrollViewRef = React.useRef(null);
+
+    React.useEffect(() => {
+        scrollViewRef.current.scrollTo({
+            x: selected * ITEM_WIDTH - Dimensions.get('window').width / 2 + ITEM_WIDTH / 2,
+        });
+    }, [selected]);
 
     return (
-        <ScrollView style={styles.container} horizontal showsHorizontalScrollIndicator={false}>
+        <ScrollView ref={scrollViewRef} style={styles.container} horizontal showsHorizontalScrollIndicator={false}>
             {floors.map((floor, index) => (
                 <TouchableOpacity
                     key={`floor-${floor}-${index}`}
@@ -36,7 +44,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRightColor: Colors.secondary,
         borderRightWidth: 1,
-        minWidth: 100,
+        width: ITEM_WIDTH,
+        minWidth: ITEM_WIDTH,
     },
     selected: {
         borderTopColor: Colors.primary,
