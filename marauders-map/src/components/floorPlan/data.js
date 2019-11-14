@@ -26,15 +26,6 @@
         },
     },
     {
-        label: "Alp d'Huez",
-        floor: 2,
-        type: 'meeting',
-        coordinates: [0, 0],
-        data: {
-            size: 2,
-        },
-    },
-    {
         label: 'Alta',
         floor: 8,
         type: 'meeting',
