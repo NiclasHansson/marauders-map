@@ -66,9 +66,9 @@ export const FloorPlan = () => {
                     />
                 </View>
             </View>
-            <View style={styles.floorPicker}>
+            {/*<View style={styles.floorPicker}>
                 <FloorPicker />
-            </View>
+            </View>*/}
         </View>
     );
 };
