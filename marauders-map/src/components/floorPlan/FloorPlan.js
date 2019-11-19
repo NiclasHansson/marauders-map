@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, Text, View } from 'react-native';
-import Constants from 'expo-constants';
-import * as Location from 'expo-location';
-import * as Permissions from 'expo-permissions';
 
 import Colors from '../../constants/Colors';
 import FloorPicker from './FloorPicker';
@@ -47,65 +44,6 @@ export const FloorPlan = () => {
         setRoomList(roomList);
     }, []);
 
-    const [geoLocation, setGeoLocation] = React.useState(null);
-    const [prevGeoLocation, setPrevGeoLocation] = React.useState(null);
-    const [errorMessage, setErrorMessage] = React.useState('');
-    React.useEffect(() => {
-        if (Platform.OS === 'android' && !Constants.isDevice) {
-            setErrorMessage('Oops, this will not work on Sketch in an Android emulator. Try it on your device!');
-        } else {
-            getGeoLocation();
-        }
-    }, []);
-
-    const getGeoLocation = async () => {
-        let { status } = await Permissions.askAsync(Permissions.LOCATION);
-        if (status !== 'granted') {
-            setErrorMessage('Permission to access location was denied');
-        }
-
-        await Location.watchPositionAsync(
-            {
-                accuracy: Location.Accuracy.Highest,
-                timeInterval: 2000,
-                distanceInterval: 1,
-            },
-            location => {
-                setPrevGeoLocation(geoLocation);
-                setGeoLocation(location);
-            }
-        );
-    };
-
-    const upperLeft = { long: 1024, lat: 6.6423 };
-    const upperRight = { long: 17250, lat: 6.7476 };
-    const lowerRight = { long: 20879, lat: 6.5045 };
-
-    const omega = 26.177 * ((2 * Math.PI) / 360);
-    const toPrimCoordinates = (x, y) => {
-        const { radius, alpha } = toPolarCoordinates(x, y);
-        const xPrim = radius * Math.cos(alpha) * Math.cos(omega) + radius * Math.sin(alpha) * Math.sin(omega);
-        const yPrim = radius * Math.sin(alpha) * Math.cos(omega) - radius * Math.cos(alpha) * Math.sin(omega);
-        return { x: xPrim, y: yPrim };
-    };
-
-    const toPolarCoordinates = (x, y) => {
-        const radius = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-        const alpha = Math.asin(y / radius);
-        return { radius, alpha };
-    };
-
-    const prim = toPrimCoordinates(upperLeft.long, upperLeft.lat);
-    // console.log('UPPER LEFT', prim);
-    const prim2 = toPrimCoordinates(upperRight.long, upperRight.lat);
-    // console.log('UPPER RIGHT', prim2);
-    const prim3 = toPrimCoordinates(lowerRight.long, lowerRight.lat);
-    const diffx = prim2.x - prim.x;
-    const diffy = prim3.y - prim2.y;
-    console.log('UPPER diff', diffx, diffy);
-    // console.log('LOWER RIGHT', prim3);
-    console.log('--------------------');
-
     const onRoomPress = index => {
         setSelectedRoomIndex(index);
     };
@@ -117,15 +55,7 @@ export const FloorPlan = () => {
             <View style={styles.content}>
                 <Text style={styles.header}>{'Torsgatan 14'}</Text>
                 <View style={styles.mapContainer}>
-                    <Map
-                        location={{
-                            lat: geoLocation && geoLocation.coords.latitude,
-                            long: geoLocation && geoLocation.coords.longitude,
-                        }}
-                        rooms={roomData}
-                        selected={selectedRoomLabel}
-                        onRoomPress={() => true}
-                    />
+                    <Map rooms={roomData} selected={selectedRoomLabel} onRoomPress={() => true} />
                 </View>
                 <View style={styles.roomPicker}>
                     <RoomPicker

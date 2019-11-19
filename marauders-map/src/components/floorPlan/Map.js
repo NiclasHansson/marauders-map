@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
 });
 
 Map.propTypes = {
-    location: PropTypes.shape({ lat: PropTypes.number, long: PropTypes.number }).isRequired,
     rooms: PropTypes.array,
     selected: PropTypes.string,
     onRoomPress: PropTypes.func,

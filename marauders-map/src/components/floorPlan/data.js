@@ -12,24 +12,6 @@
         coordinates: [81, 26],
     },
     {
-        label: 'Test 1',
-        floor: 8,
-        type: 'kitchen',
-        coordinates: [3, 10],
-    },
-    {
-        label: 'Test 3',
-        floor: 8,
-        type: 'kitchen',
-        coordinates: [95, 4],
-    },
-    {
-        label: 'Test 4',
-        floor: 8,
-        type: 'bathroom',
-        coordinates: [95, 66],
-    },
-    {
         label: 'Torsköket',
         floor: 8,
         type: 'kitchen',
